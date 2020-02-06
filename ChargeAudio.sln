@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChargeAudio", "ChargeAudio.csproj", "{A804BD46-C186-4ED2-B36D-B0496112396A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Debug|x86.ActiveCfg = Debug|x86
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Debug|x86.Build.0 = Debug|x86
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Release|x86.ActiveCfg = Release|x86
+		{A804BD46-C186-4ED2-B36D-B0496112396A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {136D261E-8587-4FE8-90A6-400A456D16D8}
+	EndGlobalSection
+EndGlobal
