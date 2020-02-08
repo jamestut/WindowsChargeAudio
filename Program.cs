@@ -5,6 +5,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ChargeAudio
 {
@@ -15,9 +16,9 @@ namespace ChargeAudio
         /// </summary>
         static void Main(string[] args)
         {
-            if (args.Length == 1 && args[0] == "startsessionmuter")
+            if (args.Length == 4 && args[0] == "startsessionmuter")
             {
-                SessionMuter sm = new SessionMuter();
+                SessionMuter sm = new SessionMuter(int.Parse(args[1]), args[2], args[3]);
                 sm.Run();
             }
             else

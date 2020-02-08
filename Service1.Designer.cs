@@ -32,6 +32,7 @@
             // Service1
             // 
             this.CanHandlePowerEvent = true;
+            this.CanHandleSessionChangeEvent = true;
             this.ServiceName = "ChargeAudio";
 
         }

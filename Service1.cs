@@ -16,21 +16,32 @@ namespace ChargeAudio
     public partial class Service1 : ServiceBase
     {
         static AudioPlayer _Player;
+        public static EventLog EventLogger { get; private set; }
 
         public Service1()
         {
             InitializeComponent();
+
+            EventLogger = new System.Diagnostics.EventLog();
+            if (!System.Diagnostics.EventLog.SourceExists(ServiceName))
+            {
+                System.Diagnostics.EventLog.CreateEventSource(ServiceName, EventLogger.Log);
+            }
+            EventLogger.Source = ServiceName;
         }
 
         protected override void OnStart(string[] args)
         {
             if (!LoadSettings())
+            {
+                EventLogger.WriteEntry("Failed to load settings. Ensure the registry settings are set correctly.", EventLogEntryType.Error);
                 RaiseError(0x80004005);
+            }
         }
 
         protected override void OnStop()
         {
-            
+            _Player.CleanSessionMuters();
         }
 
         protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
@@ -52,6 +63,25 @@ namespace ChargeAudio
             {
                 case 128:
                     _Player.PlayAudio();
+                    break;
+                case 129:
+                    SpawnInSession.StartProcessInSession("notepad.exe", 1);
+                    break;
+            }
+        }
+
+        protected override void OnSessionChange(SessionChangeDescription changeDescription)
+        {
+            //EventLogger.WriteEntry($"Session change. Reason: {changeDescription.Reason}. Sess ID = {changeDescription.SessionId}.");
+            switch(changeDescription.Reason)
+            {
+                case SessionChangeReason.SessionLogon:
+                case SessionChangeReason.RemoteConnect:
+                case SessionChangeReason.ConsoleConnect:
+                    _Player.StartSessionMuter((uint)changeDescription.SessionId);
+                    break;
+                case SessionChangeReason.SessionLogoff:
+                    _Player.CloseSessionMuter((uint)changeDescription.SessionId);
                     break;
             }
         }
