@@ -16,11 +16,13 @@ namespace ChargeAudio
     public partial class Service1 : ServiceBase
     {
         static AudioPlayer _Player;
+        private PowerLineStatus _CurrStatus;
         public static EventLog EventLogger { get; private set; }
 
         public Service1()
         {
             InitializeComponent();
+            _CurrStatus = SystemInformation.PowerStatus.PowerLineStatus;
 
             EventLogger = new System.Diagnostics.EventLog();
             if (!System.Diagnostics.EventLog.SourceExists(ServiceName))
@@ -49,10 +51,13 @@ namespace ChargeAudio
             if(powerStatus == PowerBroadcastStatus.PowerStatusChange)
             {
                 if(SystemInformation.PowerStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery &&
-                    SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online)
+                    SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online &&
+                    _CurrStatus != PowerLineStatus.Online)
                 {
                     _Player.PlayAudio();
                 }
+                // update current status
+                _CurrStatus = SystemInformation.PowerStatus.PowerLineStatus;
             }
             return true;
         }
