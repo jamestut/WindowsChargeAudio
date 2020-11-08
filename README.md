@@ -8,15 +8,15 @@ This service requires .NET framework 4.6.1.
 
 Use .NET's `installutil.exe` to install or uninstall this service. By default this service will be installed with `LocalSystem` privileges.
 
-The binary in the releases page are compiled with as a x86 binary, therefore 32 bit version of .NET's `installutil.exe` should be used instead.
+The binary in the releases page are compiled with as a x86 binary, therefore 32 bit version of .NET's `installutil.exe` should be used instead. Ensure the `NAudio.dll` is also in the same folder as the `ChargeAudio.exe`.
 
 Example command to **install** this service:
 
-`C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe C:\path\to\ServiceDisabler.exe`
+`C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe C:\path\to\ChargeAudio.exe`
 
 Example command to **uninstall** this service:
 
-`C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /u C:\path\to\ServiceDisabler.exe`
+`C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /u C:\path\to\ChargeAudio.exe`
 
 Run those commands with administrator privilege.
 
